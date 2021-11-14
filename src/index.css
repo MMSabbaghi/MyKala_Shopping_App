@@ -31,4 +31,27 @@ a {
   color: #333;
 }
 
+.container {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 130rem;
+}
 
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 0.8rem;
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.btn_primary {
+  background-color: blueviolet;
+  color: #fff;
+}
