@@ -1,0 +1,64 @@
+.navbar_links,
+.navbar_links ul {
+  display: flex;
+  align-items: center;
+}
+
+.main_header nav {
+  justify-content: space-between;
+}
+
+.main_header {
+  height: 6rem;
+  background-color: #fff;
+  box-shadow: 1rem 0 1rem rgba(0, 0, 0, 0.2);
+}
+
+.navbar_links .logo {
+  margin-left: 3rem;
+}
+
+.navbar_links ul li {
+  margin: auto 1rem;
+}
+
+.navlink {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.navbar_links .navlink.active {
+  color: blueviolet;
+}
+
+.navlink:hover,
+.navlink.active:hover {
+  background-color: blueviolet;
+  color: #fff;
+}
+
+.cart_icon {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.cart_icon svg {
+  font-size: 2.5rem;
+  color: blueviolet;
+}
+
+.cart_icon span {
+  position: absolute;
+  top: -0.7rem;
+  right: -0.7rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 100%;
+  background-color: #f44336;
+  font-size: 1.3rem;
+  color: #fff;
+  display: grid;
+  place-content: center;
+}
