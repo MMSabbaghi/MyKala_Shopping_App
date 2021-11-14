@@ -1,0 +1,16 @@
+.page_404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 11rem;
+}
+
+.page_404 img {
+  max-width: 90%;
+}
+
+.page_404 p {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+}
