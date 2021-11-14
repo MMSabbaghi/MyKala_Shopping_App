@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "Shabnam";
+  src: url("./assets/fonts/Shabnam.woff2") format("woff2"),
+    url("./assets/fonts/Shabnam.woff") format("woff"),
+    url("./assets/fonts/Shabnam.ttf") format("truetype"),
+    url("./assets/fonts/Shabnam.eot") format("eot");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Shabnam", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #eee;
+  font-size: 1.6rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+
