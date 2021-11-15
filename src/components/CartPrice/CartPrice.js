@@ -29,7 +29,7 @@ const CartPrice = () => {
         <p>مبلغ قابل پرداخت</p>
         <p>{toPersianNumber(getFinalPrice())}$</p>
       </div>
-      <Link to="/" className="btn btn_primary">
+      <Link to="/checkout" className="btn btn_primary">
         ادامه سفارش
       </Link>
     </section>
