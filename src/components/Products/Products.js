@@ -7,15 +7,30 @@ import { ADD_TO_CART } from "../../context/CartProvider/Types";
 import checkInCart from "../../utils/checkInCart";
 
 const ProductItem = (props) => {
-  const { image, name, price, _id } = props.product;
+  const { image, name, price, _id, offPrice, discount } = props.product;
   const dispatch = useCartDispatch();
   const cart = useCart();
   const inCart = checkInCart(cart, _id);
 
   const addProductHandler = () => {
-    dispatch({ type: ADD_TO_CART, payload: props.product });
-    notify("success", "محصول با موفقیت اضافه شد");
+    if (!inCart) {
+      dispatch({ type: ADD_TO_CART, payload: props.product });
+      notify("success", " با موفقیت به سبد خرید اضافه شد");
+    }
   };
+
+  const renderPrice = () => {
+    if (!discount) return <p> {toPersianNumber(price)}دلار</p>;
+
+    return (
+      <div className="price_discount row">
+        <p> {toPersianNumber(price)}</p>
+        <span> {toPersianNumber(discount)}% </span>
+        <p> {toPersianNumber(offPrice)}دلار </p>
+      </div>
+    );
+  };
+
   return (
     <div className="product_item">
       <img src={image} alt={name} />
@@ -25,7 +40,7 @@ const ProductItem = (props) => {
           <button className="btn btn_primary" onClick={addProductHandler}>
             {inCart ? "اضافه شد !" : "افزودن به سبد خرید"}
           </button>
-          <p>{toPersianNumber(price)}دلار</p>
+          {renderPrice()}
         </div>
       </section>
     </div>
