@@ -7,16 +7,7 @@ import {
 const cartReducer = (state, { type, payload }) => {
   switch (type) {
     case ADD_TO_CART: {
-      const itemIndex = state.findIndex((p) => p._id === payload._id);
-      if (itemIndex < 0) {
-        return [...state, { ...payload, quantity: 1 }];
-      } else {
-        const updatedItem = { ...state[itemIndex] };
-        updatedItem.quantity += 1;
-        const newState = [...state];
-        newState[itemIndex] = updatedItem;
-        return newState;
-      }
+      return [...state, { ...payload, quantity: 1 }];
     }
     case INCREMENT_PRODUCT_QTY:
     case DECREMENT_PRODUCT_QTY: {

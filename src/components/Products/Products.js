@@ -2,12 +2,15 @@ import { products } from "../../data";
 import toPersianNumber from "../../utils/toPersianNumber";
 import "./Products.css";
 import notify from "../../utils/notificationManager";
-import { useCartDispatch } from "../../context/CartProvider/Provider";
+import { useCart, useCartDispatch } from "../../context/CartProvider/Provider";
 import { ADD_TO_CART } from "../../context/CartProvider/Types";
+import checkInCart from "../../utils/checkInCart";
 
 const ProductItem = (props) => {
-  const { image, name, price } = props.product;
+  const { image, name, price, _id } = props.product;
   const dispatch = useCartDispatch();
+  const cart = useCart();
+  const inCart = checkInCart(cart, _id);
 
   const addProductHandler = () => {
     dispatch({ type: ADD_TO_CART, payload: props.product });
@@ -20,7 +23,7 @@ const ProductItem = (props) => {
         <p className="product_name">{name}</p>
         <div>
           <button className="btn btn_primary" onClick={addProductHandler}>
-            افزودن به سبد خرید
+            {inCart ? "اضافه شد !" : "افزودن به سبد خرید"}
           </button>
           <p>{toPersianNumber(price)}دلار</p>
         </div>
