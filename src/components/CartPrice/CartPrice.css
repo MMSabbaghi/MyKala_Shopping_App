@@ -1,5 +1,6 @@
 .cart_price {
   height: fit-content;
+  font-size: 1.45rem;
 }
 .cart_price > p {
   font-weight: bold;
@@ -7,6 +8,10 @@
 
 .cart_price .row {
   justify-content: space-between;
+}
+
+.cart_price hr {
+  border: 1px solid #ddd;
 }
 
 .cart_price .btn {
