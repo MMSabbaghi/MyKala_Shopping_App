@@ -1,3 +1,14 @@
+:root {
+  --bg-color: #eee;
+  --primary-color: blueviolet;
+  --secondary-color: #fff;
+  --text-color: #222;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --red-color: #f44336;
+  --gray-color: #ccc;
+  --gray2-color: #888;
+}
+
 @font-face {
   font-family: "Shabnam";
   src: url("./assets/fonts/Shabnam.woff2") format("woff2"),
@@ -18,8 +29,9 @@ html {
 }
 
 body {
-  background-color: #eee;
+  background-color: var(--bg-color);
   font-size: 1.6rem;
+  color: var(--text-color);
 }
 
 ul {
@@ -28,7 +40,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: #333;
+  color: inherit;
 }
 
 .container {
@@ -52,6 +64,6 @@ a {
 }
 
 .btn_primary {
-  background-color: blueviolet;
+  background-color: var(--primary-color);
   color: #fff;
 }

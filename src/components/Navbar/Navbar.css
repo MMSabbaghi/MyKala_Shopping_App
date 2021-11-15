@@ -10,8 +10,8 @@
 
 .main_header {
   height: 6rem;
-  background-color: #fff;
-  box-shadow: 1rem 0 1rem rgba(0, 0, 0, 0.2);
+  background-color: var(--secondary-color);
+  box-shadow: 1rem 0 1rem var(--shadow-color);
 }
 
 .navbar_links .logo {
@@ -29,13 +29,13 @@
 }
 
 .navbar_links .navlink.active {
-  color: blueviolet;
+  color: var(--primary-color);
 }
 
 .navlink:hover,
 .navlink.active:hover {
-  background-color: blueviolet;
-  color: #fff;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .cart_icon {
@@ -46,7 +46,7 @@
 
 .cart_icon svg {
   font-size: 2.5rem;
-  color: blueviolet;
+  color: var(--primary-color);
 }
 
 .cart_icon span {
@@ -56,7 +56,7 @@
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 100%;
-  background-color: #f44336;
+  background-color: var(--red-color);
   font-size: 1.3rem;
   color: #fff;
   display: grid;

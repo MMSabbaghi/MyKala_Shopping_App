@@ -1,6 +1,6 @@
 .product_item {
-  background-color: #fff;
-  box-shadow: -0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  background-color: var(--secondary-color);
+  box-shadow: -0.5rem 0.5rem 1rem var(--shadow-color);
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -41,14 +41,14 @@
 }
 
 .price_discount p:first-child {
-  color: #999;
+  color: var(--gray-color);
   text-decoration: line-through;
 }
 
 .price_discount span {
   display: grid;
   place-content: center;
-  background-color: #f44336;
+  background-color: var(--red-color);
   color: #fff;
   font-size: 1.4rem;
   width: 3rem;
