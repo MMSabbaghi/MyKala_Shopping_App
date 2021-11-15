@@ -9,12 +9,10 @@ const CartPrice = () => {
   const getTotalPrice = () =>
     cart.map((p) => p.price * p.quantity).reduce((p, total) => p + total);
 
-  const getTotalDiscount = () =>
-    cart
-      .map((p) => p.price * p.quantity * p.discount)
-      .reduce((d, total) => d + total) / 100;
+  const getFinalPrice = () =>
+    cart.map((p) => p.quantity * p.offPrice).reduce((d, total) => d + total);
 
-  const getFinalPrice = () => getTotalPrice() - getTotalDiscount();
+  const getTotalDiscount = () => getTotalPrice() - getFinalPrice();
 
   return (
     <section className="cart_price">
