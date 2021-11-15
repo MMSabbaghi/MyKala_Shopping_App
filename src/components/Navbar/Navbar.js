@@ -7,9 +7,9 @@ import toPersianNumber from "../../utils/toPersianNumber";
 const Navbar = () => {
   const cart = useCart();
   const navItems = [
-    { id: 1, target: "/", label: "خانه" },
-    { id: 2, target: "/products", label: "محصولات" },
-    { id: 3, target: "/about", label: "درباره ما" },
+    { target: "/", label: "خانه" },
+    { target: "/products", label: "محصولات" },
+    { target: "/about", label: "درباره ما" },
   ];
 
   const getCartQuantity = () =>
@@ -25,8 +25,8 @@ const Navbar = () => {
             <h1>مای کالا</h1>
           </div>
           <ul>
-            {navItems.map(({ id, target, label }) => (
-              <li key={id}>
+            {navItems.map(({ target, label }, index) => (
+              <li key={index}>
                 <NavLink
                   className={({ isActive }) =>
                     `navlink${isActive ? " active" : ""}`
