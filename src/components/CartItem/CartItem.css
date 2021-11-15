@@ -9,7 +9,12 @@
 }
 
 .cart_item img {
-  height: 12rem;
+  height: 100%;
+  width: 15rem;
+  object-fit: contain;
+  object-position: center;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
 }
 
 .cart_item .desc {
