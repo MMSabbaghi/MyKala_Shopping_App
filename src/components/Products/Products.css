@@ -7,8 +7,9 @@
 
 .product_item img {
   width: 100%;
-  height: 28rem;
-  object-fit: cover;
+  height: 25rem;
+  object-fit: contain;
+  object-position: center;
 }
 
 .product_item section {

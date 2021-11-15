@@ -1,7 +1,7 @@
 export const products = [
   {
     _id: "618fa8aef5239e0734f389b3",
-    name: "کفش برند Winter body",
+    name: "کفش دو و میدانی",
     description: [
       { support: "گارانتی مادام العمر" },
       { support: "ارسال رایگان" },
@@ -10,7 +10,8 @@ export const products = [
     price: 120,
     discount: 0,
     offPrice: 120,
-    image: "https://s4.uupload.ir/files/item1_soj.jpg",
+    image:
+      "https://s20.picofile.com/file/8443838768/istockphoto_1249496770_170667a.jpg",
   },
   {
     _id: "618fa8aef5239e0734f389b7",
