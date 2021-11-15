@@ -9,8 +9,8 @@ const CartItem = ({ product }) => {
       <section className="desc">
         <p>{name}</p>
         <ul>
-          {description.map(({ support }) => (
-            <li>
+          {description.map(({ support }, index) => (
+            <li key={index}>
               <BiCheckShield /> {support}
             </li>
           ))}
