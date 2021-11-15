@@ -73,16 +73,7 @@
   gap: 0.5rem;
 }
 
-.cart_price {
-  height: fit-content;
-}
-.cart_price > p {
-  font-weight: bold;
-}
 
-.cart_price .row {
-  justify-content: space-between;
-}
 
 @media screen and (max-width: 950px) {
   .cart {

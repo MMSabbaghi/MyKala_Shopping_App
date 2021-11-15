@@ -1,0 +1,14 @@
+.cart_price {
+  height: fit-content;
+}
+.cart_price > p {
+  font-weight: bold;
+}
+
+.cart_price .row {
+  justify-content: space-between;
+}
+
+.cart_price .btn {
+  text-align: center;
+}
