@@ -23,7 +23,7 @@ const CartPage = () => {
     <section className="container cart">
       <div className="cart_items">
         {cart.map((product) => (
-          <CartItem product={product} />
+          <CartItem key={product._id} product={product} />
         ))}
       </div>
       <CartPrice />
