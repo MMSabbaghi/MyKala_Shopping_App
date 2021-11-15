@@ -1,4 +1,6 @@
 import { BiCheckShield } from "react-icons/bi";
+import "./CartItem.css";
+
 const CartItem = ({ product }) => {
   const { name, image, description } = product;
   return (

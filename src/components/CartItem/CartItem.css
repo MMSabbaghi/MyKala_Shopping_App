@@ -1,0 +1,37 @@
+.cart_item {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  gap: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.cart_item img {
+  height: 12rem;
+}
+
+.cart_item .desc {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.cart_item .desc p {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.cart_item ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cart_item li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
