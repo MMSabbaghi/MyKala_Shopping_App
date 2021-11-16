@@ -9,6 +9,7 @@ const SignupForm = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    phoneNumber: "",
   };
 
   const validationSchema = Yup.object({
@@ -24,6 +25,12 @@ const SignupForm = () => {
     confirmPassword: Yup.string()
       .required("تکرار رمز عبور را وارد کنید!")
       .oneOf([Yup.ref("password"), null], "رمز عبور و تکرار آن یکی نیستند!"),
+    phoneNumber: Yup.string()
+      .required("شماره همراه را وارد کنید !")
+      .matches(
+        /(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}/gi,
+        "شماره همراه نامعتبر است !"
+      ),
   });
 
   const onSubmit = (values) => {
@@ -34,7 +41,7 @@ const SignupForm = () => {
     onSubmit,
     initialValues,
     validationSchema,
-    validateOnMount:true
+    validateOnMount: true,
   });
 
   return (
@@ -47,6 +54,11 @@ const SignupForm = () => {
           formik={formik}
         />
         <TextField fieldName="email" label="ایمیل" formik={formik} />
+        <TextField
+          fieldName="phoneNumber"
+          label="شماره همراه"
+          formik={formik}
+        />
         <TextField
           fieldName="password"
           label="رمزعبور"
