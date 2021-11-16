@@ -18,7 +18,7 @@ const SignupForm = () => {
   const validationSchema = Yup.object({
     name: Yup.string()
       .required("نام و نام خانوادگی را وارد کنید !")
-      .min(4, "نام و نام خانوادگی حداقل باید شامل ۴ حرف باشند ! "),
+      .min(6, "نام و نام خانوادگی حداقل باید شامل ۶ حرف باشند ! "),
     email: Yup.string()
       .required("ایمیل را وارد کنید !")
       .email("ایمیل وارد شده نامعتبر است !"),
