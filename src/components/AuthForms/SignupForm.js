@@ -34,6 +34,7 @@ const SignupForm = () => {
     onSubmit,
     initialValues,
     validationSchema,
+    validateOnMount:true
   });
 
   return (
@@ -58,7 +59,11 @@ const SignupForm = () => {
           formik={formik}
           type="password"
         />
-        <button type="submit" className="btn btn_primary">
+        <button
+          type="submit"
+          disabled={!formik.isValid}
+          className="btn btn_primary"
+        >
           ثبت نام
         </button>
       </form>

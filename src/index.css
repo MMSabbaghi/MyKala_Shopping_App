@@ -67,3 +67,7 @@ a {
   background-color: var(--primary-color);
   color: #fff;
 }
+
+.btn:disabled {
+  opacity: 0.6;
+}
