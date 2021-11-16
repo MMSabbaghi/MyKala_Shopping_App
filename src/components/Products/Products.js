@@ -1,10 +1,11 @@
-import { products } from "../../data";
 import toPersianNumber from "../../utils/toPersianNumber";
 import "./Products.css";
 import notify from "../../utils/notificationManager";
 import { useCart, useCartDispatch } from "../../context/CartProvider/Provider";
 import { ADD_TO_CART } from "../../context/CartProvider/Types";
 import checkInCart from "../../utils/checkInCart";
+import { useEffect, useState } from "react";
+import { getProducts } from "../../services/productsService";
 
 const ProductItem = (props) => {
   const { image, name, price, _id, offPrice, discount } = props.product;
@@ -48,6 +49,14 @@ const ProductItem = (props) => {
 };
 
 const Products = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getProducts()
+      .then((res) => setProducts(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <section className="products">
       {products.map((product) => (
