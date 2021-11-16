@@ -2,10 +2,13 @@ import { useFormik } from "formik";
 import TextField from "../common/TextField/TextField";
 import * as Yup from "yup";
 import "./AuthForms.css";
+import { signUpUser } from "../../services/authServices";
+import notify from "../../utils/notificationManager";
+import { useState } from "react";
 
 const SignupForm = () => {
   const initialValues = {
-    fullName: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -13,7 +16,7 @@ const SignupForm = () => {
   };
 
   const validationSchema = Yup.object({
-    fullName: Yup.string()
+    name: Yup.string()
       .required("نام و نام خانوادگی را وارد کنید !")
       .min(4, "نام و نام خانوادگی حداقل باید شامل ۴ حرف باشند ! "),
     email: Yup.string()
@@ -21,7 +24,7 @@ const SignupForm = () => {
       .email("ایمیل وارد شده نامعتبر است !"),
     password: Yup.string()
       .required("رمز عبور را وارد کنید !")
-      .min(6, "رمز عبور حداقل باید شامل ۶ کاراکتر باشد !"),
+      .min(8, "رمز عبور حداقل باید شامل ۸ کاراکتر باشد !"),
     confirmPassword: Yup.string()
       .required("تکرار رمز عبور را وارد کنید!")
       .oneOf([Yup.ref("password"), null], "رمز عبور و تکرار آن یکی نیستند!"),
@@ -33,8 +36,16 @@ const SignupForm = () => {
       ),
   });
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = async (values) => {
+    const userData = { ...values };
+    delete userData.confirmPassword;
+    try {
+      const { data } = await signUpUser(userData);
+      notify("success", "ثبت نام با موفقیت انجام شد !");
+    } catch (error) {
+      const { message } = error.response.data;
+      notify("error", message);
+    }
   };
 
   const formik = useFormik({
@@ -49,7 +60,7 @@ const SignupForm = () => {
       <h1> فرم ثبت نام </h1>
       <form onSubmit={formik.handleSubmit}>
         <TextField
-          fieldName="fullName"
+          fieldName="name"
           label="نام و نام خانوادگی"
           formik={formik}
         />
