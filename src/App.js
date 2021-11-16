@@ -25,7 +25,8 @@ const App = () => {
                 {subRoutes.map(({ path: subPath, Element }) => (
                   <Route
                     key={path + subPath}
-                    path={path}
+                    path={subPath}
+                    index={true}
                     element={<Element />}
                   />
                 ))}
