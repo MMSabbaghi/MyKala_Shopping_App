@@ -1,0 +1,13 @@
+.login_form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+.login_form h1 {
+  text-align: center;
+}
+
+.login_form .btn {
+  margin-top: 1rem;
+  font-size: 1.8rem;
+}
