@@ -13,7 +13,7 @@ const routes = [
   new Route("محصولات", "/products", ProductsPage),
   new Route("سبد خرید شما", "/cart", CartPage),
   new Route("ورود", "/login", LoginForm, { layout: AuthLayout }),
-  new Route("ورود", "/signup", SignupForm, { layout: AuthLayout }),
+  new Route("ثبت نام", "/signup", SignupForm, { layout: AuthLayout }),
   new Route("ثبت سفارش", "/checkout", CheckOutPage),
   new Route("صفحه یافت نشد !", "*", NotFound404Page),
 ];
