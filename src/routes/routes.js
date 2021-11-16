@@ -4,8 +4,8 @@ import NotFound404Page from "../pages/NotFound404Page";
 import ProductsPage from "../pages/ProductsPage";
 import CartPage from "../pages/CartPage";
 import CheckOutPage from "../pages/CheckOutPage";
-import LoginForm from "../components/LoginForm/LoginForm";
-import SignupForm from "../components/SignupForm/SignupForm";
+import LoginForm from "../components/AuthForms/LoginForm";
+import SignupForm from "../components/AuthForms/SignupForm";
 import AuthLayout from "../layout/AuthLayout";
 
 const routes = [
