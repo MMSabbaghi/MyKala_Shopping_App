@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import { Link, NavLink } from "react-router-dom";
-import { BiCartAlt } from "react-icons/bi";
+import { BiCartAlt, BiLogOut } from "react-icons/bi";
 import { useCart } from "../../context/CartProvider/Provider";
 import toPersianNumber from "../../utils/toPersianNumber";
 
@@ -39,10 +39,13 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <div>
-          <Link to={"/cart"} className="cart_icon">
+        <div className="row left_icons">
+          <Link to="/cart" className="cart_icon">
             <span> {toPersianNumber(getCartQuantity())} </span>
             <BiCartAlt />
+          </Link>
+          <Link to="/login" className="row enter_icon">
+            <BiLogOut /> <span> ورود</span>
           </Link>
         </div>
       </nav>

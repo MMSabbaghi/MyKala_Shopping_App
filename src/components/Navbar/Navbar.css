@@ -38,15 +38,21 @@
   color: var(--secondary-color);
 }
 
-.cart_icon {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
+.left_icons {
+  gap: 1.5rem;
 }
 
-.cart_icon svg {
-  font-size: 2.5rem;
+.cart_icon,
+.enter_icon {
+  display: flex;
+  position: relative;
+  cursor: pointer;
   color: var(--primary-color);
+}
+
+.cart_icon svg,
+.enter_icon svg {
+  font-size: 2.5rem;
 }
 
 .cart_icon span {
@@ -61,4 +67,8 @@
   color: #fff;
   display: grid;
   place-content: center;
+}
+
+.enter_icon {
+  gap: 0.5rem;
 }
