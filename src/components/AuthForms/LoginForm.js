@@ -5,9 +5,11 @@ import "./AuthForms.css";
 import { loginUser } from "../../services/authServices";
 import notify from "../../utils/notificationManager";
 import { useNavigate } from "react-router";
+import { useSetAuth } from "../../context/AuthProvider/Provider";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const setAuth = useSetAuth();
 
   const initialValues = {
     email: "",
@@ -26,6 +28,7 @@ const LoginForm = () => {
   const onSubmit = async (values) => {
     try {
       const { data } = await loginUser(values);
+      setAuth(data);
       notify("success", "با موفقیت وارد شدید !");
       navigate("/");
     } catch (error) {

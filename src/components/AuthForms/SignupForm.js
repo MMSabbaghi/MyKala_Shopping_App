@@ -5,9 +5,11 @@ import "./AuthForms.css";
 import { signUpUser } from "../../services/authServices";
 import notify from "../../utils/notificationManager";
 import { useNavigate } from "react-router";
+import { useSetAuth } from "../../context/AuthProvider/Provider";
 
 const SignupForm = () => {
   const navigate = useNavigate();
+  const setAuth = useSetAuth();
 
   const initialValues = {
     name: "",
@@ -43,6 +45,7 @@ const SignupForm = () => {
     delete userData.confirmPassword;
     try {
       const { data } = await signUpUser(userData);
+      setAuth(data);
       notify("success", "ثبت نام با موفقیت انجام شد !");
       navigate("/");
     } catch (error) {
