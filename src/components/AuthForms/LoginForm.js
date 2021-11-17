@@ -2,8 +2,13 @@ import { useFormik } from "formik";
 import TextField from "../common/TextField/TextField";
 import * as Yup from "yup";
 import "./AuthForms.css";
+import { loginUser } from "../../services/authServices";
+import notify from "../../utils/notificationManager";
+import { useNavigate } from "react-router";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
@@ -18,8 +23,15 @@ const LoginForm = () => {
       .min(8, "رمز عبور حداقل باید شامل ۸ کاراکتر باشد !"),
   });
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = async (values) => {
+    try {
+      const { data } = await loginUser(values);
+      notify("success", "با موفقیت وارد شدید !");
+      navigate("/");
+    } catch (error) {
+      const { message } = error.response.data;
+      notify("error", message);
+    }
   };
 
   const formik = useFormik({
