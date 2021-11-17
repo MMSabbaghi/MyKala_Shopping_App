@@ -3,8 +3,18 @@ import authImg from "../assets/images/Secure login-rafiki.svg";
 import { NavLink } from "react-router-dom";
 import SiteLayout from "./SiteLayout";
 import useRedirectUrl from "../hooks/useRedirectUrl";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthProvider/Provider";
 
 const AuthLayout = ({ children }) => {
+  const navigate = useNavigate();
+  const userData = useAuth();
+
+  useEffect(() => {
+    if (userData) navigate(-1);
+  }, [userData]);
+
   const redirectUrl = useRedirectUrl();
   const getRouteWithRedirect = (route) =>
     redirectUrl ? `${route}?redirect=${redirectUrl}` : route;
