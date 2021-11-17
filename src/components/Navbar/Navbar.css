@@ -87,12 +87,15 @@
     top: 6rem;
     right: 0;
     opacity: 0;
+    max-height: 0;
+    overflow: hidden;
     transition: all 0.25s ease-in-out;
   }
   .navbar_links ul li {
     padding: 0.5rem;
   }
   .navbar_links ul.active_items {
+    max-height: fit-content;
     opacity: 1;
     padding: 1rem;
   }
