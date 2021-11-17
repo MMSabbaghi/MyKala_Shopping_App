@@ -4,10 +4,13 @@ import { BiCartAlt, BiLogOut, BiMenu, BiXCircle } from "react-icons/bi";
 import { useCart } from "../../context/CartProvider/Provider";
 import toPersianNumber from "../../utils/toPersianNumber";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthProvider/Provider";
 
 const Navbar = () => {
   const cart = useCart();
+  const userData = useAuth();
   const [showNav, setShowNav] = useState(false);
+
   const navItems = [
     { target: "/", label: "خانه" },
     { target: "/products", label: "محصولات" },
@@ -51,9 +54,11 @@ const Navbar = () => {
             <span> {toPersianNumber(getCartQuantity())} </span>
             <BiCartAlt />
           </Link>
-          <Link to="/login" className="row enter_icon">
-            <BiLogOut /> <span> ورود</span>
-          </Link>
+          {!userData && (
+            <Link to="/login" className="row enter_icon">
+              <BiLogOut /> <span> ورود</span>
+            </Link>
+          )}
         </div>
       </nav>
     </header>
