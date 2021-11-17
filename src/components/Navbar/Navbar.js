@@ -1,11 +1,13 @@
 import "./Navbar.css";
 import { Link, NavLink } from "react-router-dom";
-import { BiCartAlt, BiLogOut } from "react-icons/bi";
+import { BiCartAlt, BiLogOut, BiMenu, BiXCircle } from "react-icons/bi";
 import { useCart } from "../../context/CartProvider/Provider";
 import toPersianNumber from "../../utils/toPersianNumber";
+import { useState } from "react";
 
 const Navbar = () => {
   const cart = useCart();
+  const [showNav, setShowNav] = useState(false);
   const navItems = [
     { target: "/", label: "خانه" },
     { target: "/products", label: "محصولات" },
@@ -17,14 +19,19 @@ const Navbar = () => {
       ? cart.map((p) => p.quantity).reduce((q, total) => total + q)
       : 0;
 
+  const toggleMobileMenu = () => setShowNav((prevSate) => !prevSate);
+
   return (
     <header className="row main_header">
       <nav className="row container">
         <div className="row navbar_links">
+          <div className="menu_icon" onClick={toggleMobileMenu}>
+            {showNav ? <BiXCircle /> : <BiMenu />}
+          </div>
           <div className="logo">
             <h1>مای کالا</h1>
           </div>
-          <ul>
+          <ul className={`row ${showNav ? "active_items" : ""}`}>
             {navItems.map(({ target, label }, index) => (
               <li key={index}>
                 <NavLink
