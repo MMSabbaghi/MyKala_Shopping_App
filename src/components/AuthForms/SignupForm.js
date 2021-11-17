@@ -4,9 +4,11 @@ import * as Yup from "yup";
 import "./AuthForms.css";
 import { signUpUser } from "../../services/authServices";
 import notify from "../../utils/notificationManager";
-import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const SignupForm = () => {
+  const navigate = useNavigate();
+
   const initialValues = {
     name: "",
     email: "",
@@ -42,6 +44,7 @@ const SignupForm = () => {
     try {
       const { data } = await signUpUser(userData);
       notify("success", "ثبت نام با موفقیت انجام شد !");
+      navigate("/");
     } catch (error) {
       const { message } = error.response.data;
       notify("error", message);
