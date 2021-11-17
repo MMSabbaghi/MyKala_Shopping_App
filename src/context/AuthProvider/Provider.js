@@ -4,10 +4,10 @@ const AuthContext = createContext();
 const AuthContextDispatcher = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState(null);
+  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
-    const authData = localStorage.getItem("authState");
+    const authData = localStorage.getItem("authState") || false;
     setAuth(JSON.parse(authData));
   }, []);
 
