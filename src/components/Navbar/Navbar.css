@@ -12,6 +12,9 @@
   height: 6rem;
   background-color: var(--secondary-color);
   box-shadow: 1rem 0 1rem var(--shadow-color);
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
 }
 
 .navbar_links .logo {
