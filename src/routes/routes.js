@@ -7,6 +7,7 @@ import CheckOutPage from "../pages/CheckOutPage";
 import LoginForm from "../components/AuthForms/LoginForm";
 import SignupForm from "../components/AuthForms/SignupForm";
 import AuthLayout from "../layout/AuthLayout";
+import ProfilePage from "../pages/ProfilePage";
 
 const routes = [
   new Route("خانه", "/", HomePage),
@@ -15,6 +16,7 @@ const routes = [
   new Route("ورود", "/login", LoginForm, { layout: AuthLayout }),
   new Route("ثبت نام", "/signup", SignupForm, { layout: AuthLayout }),
   new Route("ثبت سفارش", "/checkout", CheckOutPage),
+  new Route("پروفایل شما", "/profile", ProfilePage),
   new Route("صفحه یافت نشد !", "*", NotFound404Page),
 ];
 
