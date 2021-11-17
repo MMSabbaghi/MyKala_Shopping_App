@@ -6,10 +6,12 @@ import { loginUser } from "../../services/authServices";
 import notify from "../../utils/notificationManager";
 import { useNavigate } from "react-router";
 import { useSetAuth } from "../../context/AuthProvider/Provider";
+import useRedirectUrl from "../../hooks/useRedirectUrl";
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const setAuth = useSetAuth();
+  const redirectUrl = useRedirectUrl();
 
   const initialValues = {
     email: "",
@@ -30,7 +32,7 @@ const LoginForm = () => {
       const { data } = await loginUser(values);
       setAuth(data);
       notify("success", "با موفقیت وارد شدید !");
-      navigate("/");
+      navigate(`/${redirectUrl}`);
     } catch (error) {
       const { message } = error.response.data;
       notify("error", message);

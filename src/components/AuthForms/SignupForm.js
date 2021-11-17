@@ -6,10 +6,12 @@ import { signUpUser } from "../../services/authServices";
 import notify from "../../utils/notificationManager";
 import { useNavigate } from "react-router";
 import { useSetAuth } from "../../context/AuthProvider/Provider";
+import useRedirectUrl from "../../hooks/useRedirectUrl";
 
 const SignupForm = () => {
   const navigate = useNavigate();
   const setAuth = useSetAuth();
+  const redirectUrl = useRedirectUrl();
 
   const initialValues = {
     name: "",
@@ -47,7 +49,7 @@ const SignupForm = () => {
       const { data } = await signUpUser(userData);
       setAuth(data);
       notify("success", "ثبت نام با موفقیت انجام شد !");
-      navigate("/");
+      navigate(`/${redirectUrl}`);
     } catch (error) {
       const { message } = error.response.data;
       notify("error", message);
