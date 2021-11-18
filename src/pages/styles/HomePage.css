@@ -1,0 +1,29 @@
+.overview {
+  background-color:  var(--secondary-color);
+}
+
+.overview img {
+  max-width: 100%;
+}
+
+.overview .container {
+  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.overview .desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .overview .container {
+    grid-template-columns: 1fr;
+  }
+}
