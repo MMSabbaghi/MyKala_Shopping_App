@@ -12,7 +12,7 @@ const AuthLayout = ({ children }) => {
   const userData = useAuth();
 
   useEffect(() => {
-    if (userData) navigate(-1);
+    if (userData) navigate("/");
   }, [userData]);
 
   const redirectUrl = useRedirectUrl();
