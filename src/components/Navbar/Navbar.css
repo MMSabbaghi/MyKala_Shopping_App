@@ -70,6 +70,40 @@
   gap: 0.5rem;
 }
 
+.profile_icon {
+  position: relative;
+  font-size: 1.5rem;
+}
+
+.profile_icon button {
+  background-color: transparent;
+  color: var(--red-color);
+  border: none;
+  cursor: pointer;
+}
+
+.profile_icon ul li {
+  padding: 0.5rem 2rem;
+  text-align: center;
+}
+
+.profile_icon ul {
+  position: absolute;
+  top: 100%;
+  right: -50%;
+  background-color: var(--secondary-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 1rem 1rem var(--shadow-color);
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.2s;
+}
+
+.profile_icon ul.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
 .menu_icon {
   display: none;
 }
@@ -98,5 +132,9 @@
     max-height: fit-content;
     opacity: 1;
     top: 6rem;
+  }
+
+  .profile_icon ul {
+    right: -100%;
   }
 }

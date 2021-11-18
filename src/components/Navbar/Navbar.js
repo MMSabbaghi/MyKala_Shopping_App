@@ -1,10 +1,42 @@
 import "./Navbar.css";
 import { Link, NavLink } from "react-router-dom";
-import { BiCartAlt, BiLogOut, BiMenu, BiXCircle } from "react-icons/bi";
+import {
+  BiCartAlt,
+  BiLogOut,
+  BiMenu,
+  BiXCircle,
+  BiUserCircle,
+  BiDownArrow,
+} from "react-icons/bi";
 import { useCart } from "../../context/CartProvider/Provider";
 import toPersianNumber from "../../utils/toPersianNumber";
 import { useState } from "react";
-import { useAuth } from "../../context/AuthProvider/Provider";
+import { useAuth, useSetAuth } from "../../context/AuthProvider/Provider";
+
+const UserMenu = () => {
+  const [show, setShow] = useState(false);
+  const setAuth = useSetAuth();
+  const toggleMenu = () => setShow((prevState) => !prevState);
+  const logOut = () => setAuth(false);
+
+  return (
+    <div className="row profile_icon">
+      <button className="row" onClick={toggleMenu}>
+        <BiUserCircle style={{ fontSize: "2.8rem" }} />
+        <span> </span>
+        <BiDownArrow style={{ fontSize: "1rem" }} />
+      </button>
+      <ul className={show ? "active" : ""}>
+        <li>
+          <Link to="/profile">پروفایل</Link>
+        </li>
+        <li>
+          <button onClick={logOut}>خروج</button>
+        </li>
+      </ul>
+    </div>
+  );
+};
 
 const Navbar = () => {
   const cart = useCart();
@@ -54,10 +86,12 @@ const Navbar = () => {
             <span> {toPersianNumber(getCartQuantity())} </span>
             <BiCartAlt />
           </Link>
-          {!userData && (
+          {!userData ? (
             <Link to="/login" className="row enter_icon">
               <BiLogOut /> <span> ورود</span>
             </Link>
+          ) : (
+            <UserMenu />
           )}
         </div>
       </nav>
