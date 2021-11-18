@@ -2,11 +2,9 @@ import { useCart } from "../../context/CartProvider/Provider";
 import "./CartPrice.css";
 import toPersianNumber from "../../utils/toPersianNumber";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthProvider/Provider";
 
 const CartPrice = () => {
   const cart = useCart();
-  const userData = useAuth();
 
   const getTotalPrice = () =>
     cart.map((p) => p.price * p.quantity).reduce((p, total) => p + total);
@@ -31,10 +29,7 @@ const CartPrice = () => {
         <p>مبلغ قابل پرداخت</p>
         <p>{toPersianNumber(getFinalPrice())}$</p>
       </div>
-      <Link
-        to={userData ? "/checkout" : "/signup?redirect=checkout"}
-        className="btn btn_primary"
-      >
+      <Link to="/checkout" className="btn btn_primary">
         ادامه سفارش
       </Link>
     </section>

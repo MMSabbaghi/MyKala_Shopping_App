@@ -1,8 +1,16 @@
 import { useEffect } from "react";
-const AppPage = ({ title, children }) => {
+import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthProvider/Provider";
+
+const AppPage = ({ title, authorize, path, children }) => {
+  const navigate = useNavigate();
+  const redirectUrl = path.replace("/", "");
+  const auth = useAuth();
+
   useEffect(() => {
-    document.title = title;
-  }, [title]);
+    if (authorize && !auth) navigate(`/login?redirect=${redirectUrl}`);
+    else document.title = title;
+  }, [title, auth]);
 
   return <>{children}</>;
 };

@@ -15,8 +15,8 @@ const routes = [
   new Route("سبد خرید شما", "/cart", CartPage),
   new Route("ورود", "/login", LoginForm, { layout: AuthLayout }),
   new Route("ثبت نام", "/signup", SignupForm, { layout: AuthLayout }),
-  new Route("ثبت سفارش", "/checkout", CheckOutPage),
-  new Route("پروفایل شما", "/profile", ProfilePage),
+  new Route("ثبت سفارش", "/checkout", CheckOutPage, { authorize: true }),
+  new Route("پروفایل شما", "/profile", ProfilePage, { authorize: true }),
   new Route("صفحه یافت نشد !", "*", NotFound404Page),
 ];
 
