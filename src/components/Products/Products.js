@@ -6,6 +6,7 @@ import { ADD_TO_CART } from "../../context/CartProvider/Types";
 import checkInCart from "../../utils/checkInCart";
 import { useEffect, useState } from "react";
 import { getProducts } from "../../services/productsService";
+import Loader from "../common/Loader/Loader";
 
 const ProductItem = (props) => {
   const { image, name, price, _id, offPrice, discount } = props.product;
@@ -49,21 +50,35 @@ const ProductItem = (props) => {
 };
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const [status, setStatus] = useState({
+    data: [],
+    loading: true,
+    error: false,
+  });
 
   useEffect(() => {
     getProducts()
-      .then((res) => setProducts(res.data))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        setStatus({ ...status, data: res.data, loading: false });
+      })
+      .catch((err) => {
+        setStatus({ ...status, loading: false, error: true });
+      });
   }, []);
 
-  return (
-    <section className="products">
-      {products.map((product) => (
-        <ProductItem key={product._id} product={product} />
-      ))}
-    </section>
-  );
+  if (status.error) {
+    return <p> خطا در دریافت اطلاعات! </p>;
+  } else if (status.loading) {
+    return <Loader loading={true} size={120} />;
+  } else {
+    return (
+      <section className="products">
+        {status.data.map((product) => (
+          <ProductItem key={product._id} product={product} />
+        ))}
+      </section>
+    );
+  }
 };
 
 export default Products;
