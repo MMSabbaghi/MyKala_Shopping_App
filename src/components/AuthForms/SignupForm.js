@@ -4,16 +4,12 @@ import * as Yup from "yup";
 import "./AuthForms.css";
 import { signUpUser } from "../../services/authServices";
 import notify from "../../utils/notificationManager";
-import { useNavigate } from "react-router";
 import { useSetAuth } from "../../context/AuthProvider/Provider";
-import useRedirectUrl from "../../hooks/useRedirectUrl";
 import { useState } from "react";
 import Loader from "../common/Loader/Loader";
 
 const SignupForm = () => {
-  const navigate = useNavigate();
   const setAuth = useSetAuth();
-  const redirectUrl = useRedirectUrl();
   const [loading, setLoading] = useState(false);
 
   const initialValues = {
@@ -53,7 +49,6 @@ const SignupForm = () => {
       const { data } = await signUpUser(userData);
       setAuth(data);
       notify("success", "ثبت نام با موفقیت انجام شد !");
-      navigate(`/${redirectUrl}`);
     } catch (error) {
       const { message } = error.response.data;
       notify("error", message);

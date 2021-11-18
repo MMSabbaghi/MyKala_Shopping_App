@@ -2,7 +2,7 @@ import "./styles/AuthLayout.css";
 import authImg from "../assets/images/Secure login-rafiki.svg";
 import { NavLink } from "react-router-dom";
 import SiteLayout from "./SiteLayout";
-import useRedirectUrl from "../hooks/useRedirectUrl";
+import useQuery from "../hooks/useQuery";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthProvider/Provider";
@@ -10,12 +10,12 @@ import { useAuth } from "../context/AuthProvider/Provider";
 const AuthLayout = ({ children }) => {
   const navigate = useNavigate();
   const userData = useAuth();
+  const redirectUrl = useQuery().get("redirect") || "";
 
   useEffect(() => {
-    if (userData) navigate("/");
-  }, [userData]);
+    if (userData) navigate(`/${redirectUrl}`);
+  }, [userData, redirectUrl]);
 
-  const redirectUrl = useRedirectUrl();
   const getRouteWithRedirect = (route) =>
     redirectUrl ? `${route}?redirect=${redirectUrl}` : route;
 

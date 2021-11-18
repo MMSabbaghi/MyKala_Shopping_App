@@ -4,16 +4,12 @@ import * as Yup from "yup";
 import "./AuthForms.css";
 import { loginUser } from "../../services/authServices";
 import notify from "../../utils/notificationManager";
-import { useNavigate } from "react-router";
 import { useSetAuth } from "../../context/AuthProvider/Provider";
-import useRedirectUrl from "../../hooks/useRedirectUrl";
 import { useState } from "react";
 import Loader from "../common/Loader/Loader";
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   const setAuth = useSetAuth();
-  const redirectUrl = useRedirectUrl();
   const [loading, setLoading] = useState(false);
 
   const initialValues = {
@@ -36,7 +32,6 @@ const LoginForm = () => {
       const { data } = await loginUser(values);
       setAuth(data);
       notify("success", "با موفقیت وارد شدید !");
-      navigate(`/${redirectUrl}`);
     } catch (error) {
       const { message } = error.response.data;
       notify("error", message);
