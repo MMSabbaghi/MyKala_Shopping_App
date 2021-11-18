@@ -1,8 +1,10 @@
+import Products from "../components/Products/Products";
+
 const HomePage = () => {
   return (
-    <>
-      <h1> صفحه خانه </h1>
-    </>
+    <div className="container">
+      <Products />
+    </div>
   );
 };
 
