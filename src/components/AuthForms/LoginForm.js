@@ -7,11 +7,14 @@ import notify from "../../utils/notificationManager";
 import { useNavigate } from "react-router";
 import { useSetAuth } from "../../context/AuthProvider/Provider";
 import useRedirectUrl from "../../hooks/useRedirectUrl";
+import { useState } from "react";
+import Loader from "../common/Loader/Loader";
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const setAuth = useSetAuth();
   const redirectUrl = useRedirectUrl();
+  const [loading, setLoading] = useState(false);
 
   const initialValues = {
     email: "",
@@ -28,6 +31,7 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (values) => {
+    setLoading(true);
     try {
       const { data } = await loginUser(values);
       setAuth(data);
@@ -36,6 +40,8 @@ const LoginForm = () => {
     } catch (error) {
       const { message } = error.response.data;
       notify("error", message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,6 +51,10 @@ const LoginForm = () => {
     validationSchema,
     validateOnMount: true,
   });
+
+  if (loading) {
+    return <Loader loading={true} />;
+  }
 
   return (
     <div className="auth_form_group">

@@ -7,11 +7,14 @@ import notify from "../../utils/notificationManager";
 import { useNavigate } from "react-router";
 import { useSetAuth } from "../../context/AuthProvider/Provider";
 import useRedirectUrl from "../../hooks/useRedirectUrl";
+import { useState } from "react";
+import Loader from "../common/Loader/Loader";
 
 const SignupForm = () => {
   const navigate = useNavigate();
   const setAuth = useSetAuth();
   const redirectUrl = useRedirectUrl();
+  const [loading, setLoading] = useState(false);
 
   const initialValues = {
     name: "",
@@ -45,6 +48,7 @@ const SignupForm = () => {
   const onSubmit = async (values) => {
     const userData = { ...values };
     delete userData.confirmPassword;
+    setLoading(true);
     try {
       const { data } = await signUpUser(userData);
       setAuth(data);
@@ -53,6 +57,8 @@ const SignupForm = () => {
     } catch (error) {
       const { message } = error.response.data;
       notify("error", message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -62,6 +68,10 @@ const SignupForm = () => {
     validationSchema,
     validateOnMount: true,
   });
+
+  if (loading) {
+    return <Loader loading={true} />;
+  }
 
   return (
     <div className="auth_form_group">
