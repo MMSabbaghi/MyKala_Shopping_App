@@ -1,4 +1,3 @@
-import Products from "../components/Products/Products";
 import shoppingImg from "../assets/images/shoping.gif";
 import "./styles/HomePage.css";
 import { Link } from "react-router-dom";
