@@ -1,10 +1,36 @@
 import shoppingImg from "../assets/images/shoping.gif";
+import feature1Img from "../assets/images/24-hours-support.png";
+import feature2Img from "../assets/images/express-delivery.png";
+import feature3Img from "../assets/images/money.png";
+import feature4Img from "../assets/images/original.png";
+
 import "./styles/HomePage.css";
 import { Link } from "react-router-dom";
 
+const SiteFeatures = () => {
+  const features = [
+    { img: feature1Img, desc: "پشتیبانی ۲۴ ساعته" },
+    { img: feature2Img, desc: "تحویل سریع" },
+    { img: feature3Img, desc: "پرداخت در محل" },
+    { img: feature4Img, desc: "ضمانت اصل بودن" },
+  ];
+  return (
+    <section className="site_features">
+      <div className="container">
+        {features.map(({ img, desc }) => (
+          <div className="feature">
+            <img src={img} alt={desc} />
+            <p>{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
 const HomePage = () => {
   return (
-    <>
+    <div className="home_page">
       <section className="overview">
         <div className="container">
           <img src={shoppingImg} alt="shopping" />
@@ -17,7 +43,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-    </>
+      <SiteFeatures />
+    </div>
   );
 };
 
