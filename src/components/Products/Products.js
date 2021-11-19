@@ -4,9 +4,8 @@ import notify from "../../utils/notificationManager";
 import { useCart, useCartDispatch } from "../../context/CartProvider/Provider";
 import { ADD_TO_CART } from "../../context/CartProvider/Types";
 import checkInCart from "../../utils/checkInCart";
-import { useEffect, useState } from "react";
 import { getProducts } from "../../services/productsService";
-import Loader from "../common/Loader/Loader";
+import withFetchData from "../common/HOC/withFetchData";
 
 const ProductItem = (props) => {
   const { image, name, price, _id, offPrice, discount } = props.product;
@@ -49,36 +48,16 @@ const ProductItem = (props) => {
   );
 };
 
-const Products = () => {
-  const [status, setStatus] = useState({
-    data: [],
-    loading: true,
-    error: false,
-  });
+const Products = (props) => {
+  const products = props.data;
 
-  useEffect(() => {
-    getProducts()
-      .then((res) => {
-        setStatus({ ...status, data: res.data, loading: false });
-      })
-      .catch((err) => {
-        setStatus({ ...status, loading: false, error: true });
-      });
-  }, []);
-
-  if (status.error) {
-    return <p> خطا در دریافت اطلاعات! </p>;
-  } else if (status.loading) {
-    return <Loader loading={true} size={120} />;
-  } else {
-    return (
-      <section className="products">
-        {status.data.map((product) => (
-          <ProductItem key={product._id} product={product} />
-        ))}
-      </section>
-    );
-  }
+  return (
+    <section className="products">
+      {products.map((product) => (
+        <ProductItem key={product._id} product={product} />
+      ))}
+    </section>
+  );
 };
 
-export default Products;
+export default withFetchData(Products, getProducts);
