@@ -5,12 +5,10 @@ import "./AuthForms.css";
 import { signUpUser } from "../../services/authServices";
 import notify from "../../utils/notificationManager";
 import { useSetAuth } from "../../context/AuthProvider/Provider";
-import { useState } from "react";
-import Loader from "../common/Loader/Loader";
+import withLoading from "../common/HOC/withLoading";
 
-const SignupForm = () => {
+const SignupForm = ({setLoading}) => {
   const setAuth = useSetAuth();
-  const [loading, setLoading] = useState(false);
 
   const initialValues = {
     name: "",
@@ -64,10 +62,6 @@ const SignupForm = () => {
     validateOnMount: true,
   });
 
-  if (loading) {
-    return <Loader loading={true} />;
-  }
-
   return (
     <div className="auth_form_group">
       <h1> فرم ثبت نام </h1>
@@ -107,4 +101,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default withLoading(SignupForm);

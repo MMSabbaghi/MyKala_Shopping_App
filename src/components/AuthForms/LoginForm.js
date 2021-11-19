@@ -5,12 +5,10 @@ import "./AuthForms.css";
 import { loginUser } from "../../services/authServices";
 import notify from "../../utils/notificationManager";
 import { useSetAuth } from "../../context/AuthProvider/Provider";
-import { useState } from "react";
-import Loader from "../common/Loader/Loader";
+import withLoading from "../common/HOC/withLoading";
 
-const LoginForm = () => {
+const LoginForm = ({ setLoading }) => {
   const setAuth = useSetAuth();
-  const [loading, setLoading] = useState(false);
 
   const initialValues = {
     email: "",
@@ -47,10 +45,6 @@ const LoginForm = () => {
     validateOnMount: true,
   });
 
-  if (loading) {
-    return <Loader loading={true} />;
-  }
-
   return (
     <div className="auth_form_group">
       <h1> فرم ورود </h1>
@@ -79,4 +73,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default withLoading(LoginForm);
