@@ -4,19 +4,18 @@ import { useCart } from "../context/CartProvider/Provider";
 import { Link } from "react-router-dom";
 import CartItem from "../components/CartItem/CartItem";
 import CartPrice from "../components/CartPrice/CartPrice";
+import ErrorContent from "../components/common/ErrorContent/ErrorContent";
 
 const CartPage = () => {
   const cart = useCart();
 
   if (!cart.length) {
     return (
-      <section className="container empty_cart">
-        <img src={emptyCartImg} alt="empty cart" />
-        <p> سبد خرید شما خالی است ! </p>
+      <ErrorContent imageSrc={emptyCartImg} message={"سبد خرید شما خالی است !"}>
         <Link to="/products" className="btn btn_primary">
           برو به فروشگاه
         </Link>
-      </section>
+      </ErrorContent>
     );
   }
   return (

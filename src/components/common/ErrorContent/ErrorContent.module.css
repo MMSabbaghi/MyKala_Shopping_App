@@ -1,16 +1,16 @@
-.page_404 {
+.error_content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 11rem;
+  gap: 1.3rem;
+  height: 90vh;
 }
 
-.page_404 img {
+.error_content img {
   max-width: 90%;
 }
 
-.page_404 p {
-  font-size: 2.5rem;
-  margin-top: 1rem;
+.error_content p {
+  font-size: 2.2rem;
 }
