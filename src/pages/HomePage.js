@@ -3,7 +3,7 @@ import feature1Img from "../assets/images/24-hours-support.png";
 import feature2Img from "../assets/images/express-delivery.png";
 import feature3Img from "../assets/images/money.png";
 import feature4Img from "../assets/images/original.png";
-
+import Products from "../components/Products/Products";
 import "./styles/HomePage.css";
 import { Link } from "react-router-dom";
 
@@ -44,6 +44,12 @@ const HomePage = () => {
         </div>
       </section>
       <SiteFeatures />
+      <section className="home_products">
+        <div className="container">
+          <h3> آخرین محصولات </h3>
+          <Products count={3} />
+        </div>
+      </section>
     </div>
   );
 };
