@@ -50,6 +50,11 @@ a {
   max-width: 130rem;
 }
 
+.app > main,
+.app > main > .container {
+  min-height: 90vh;
+}
+
 .row {
   display: flex;
   align-items: center;
