@@ -26,6 +26,7 @@
 
 .cart_items,
 .cart_price {
+  height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 1rem;
