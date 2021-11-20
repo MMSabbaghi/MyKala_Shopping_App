@@ -49,14 +49,13 @@ const ProductItem = (props) => {
 };
 
 const Products = (props) => {
-  const { data: products, count } = props;
+  const { data: products, filter } = props;
 
-  const takeFromProducts = (n) =>
-    count ? [...products].slice(0, n) : products;
+  const getFilteredProducts = () => (filter ? filter([...products]) : products);
 
   return (
     <section className="products">
-      {takeFromProducts(count).map((product) => (
+      {getFilteredProducts().map((product) => (
         <ProductItem key={product._id} product={product} />
       ))}
     </section>
