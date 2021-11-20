@@ -46,8 +46,10 @@ const HomePage = () => {
       <SiteFeatures />
       <section className="home_products">
         <div className="container">
-          <h3> آخرین محصولات </h3>
-          <Products count={3} />
+          <h3> آخرین تخفیف ها </h3>
+          <Products
+            filter={(ps) => ps.filter((p) => !!p.discount).slice(0, 3)}
+          />
         </div>
       </section>
     </div>
