@@ -16,11 +16,10 @@ const withFetchData = (Component, fetchMethod) => {
       fetchMethod()
         .then((res) => {
           const data = res.docs.map((doc) => ({ ...doc.data(), _id: doc.id }));
-          setRequest({ ...request, data, loading: false });
+          setRequest((req) => ({ ...req, data, loading: false }));
         })
         .catch((err) => {
-          console.log(err);
-          setRequest({ ...request, loading: false, error: true });
+          setRequest((req) => ({ ...req, loading: false, error: true }));
         });
     }, []);
 

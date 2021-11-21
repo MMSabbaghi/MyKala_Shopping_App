@@ -17,8 +17,8 @@ const SiteFeatures = () => {
   return (
     <section className="site_features">
       <div className="container">
-        {features.map(({ img, desc }) => (
-          <div className="feature">
+        {features.map(({ img, desc }, index) => (
+          <div className="feature" key={index}>
             <img src={img} alt={desc} />
             <p>{desc}</p>
           </div>

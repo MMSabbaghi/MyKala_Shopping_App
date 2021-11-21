@@ -1,5 +1,5 @@
 import { db } from "./firebase";
-import { collection, getDocs, getDoc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 const productsRef = collection(db, "products");
 

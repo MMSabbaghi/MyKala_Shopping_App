@@ -10,7 +10,7 @@ const AppPage = ({ title, authorize, path, children }) => {
   useEffect(() => {
     if (authorize && !auth) navigate(`/login?redirect=${redirectUrl}`);
     else document.title = title;
-  }, [title, auth]);
+  }, [title, auth, redirectUrl, authorize, navigate]);
 
   return <>{children}</>;
 };

@@ -14,7 +14,7 @@ const AuthLayout = ({ children }) => {
 
   useEffect(() => {
     if (userData) navigate(`/${redirectUrl}`);
-  }, [userData, redirectUrl]);
+  }, [userData, redirectUrl, navigate]);
 
   const getRouteWithRedirect = (route) =>
     redirectUrl ? `${route}?redirect=${redirectUrl}` : route;
