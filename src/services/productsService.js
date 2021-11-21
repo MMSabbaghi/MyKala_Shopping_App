@@ -1,9 +1,12 @@
-import http from "./httpServices";
+import { db } from "./firebase";
+import { collection, getDocs, getDoc } from "firebase/firestore";
+
+const productsRef = collection(db, "products");
 
 export function getProducts() {
-  return http.get("/product");
+  return getDocs(productsRef);
 }
 
 export function getProductById(id) {
-  return http.get(`/product/${id}`);
+  // return getDoc(productsRef);
 }

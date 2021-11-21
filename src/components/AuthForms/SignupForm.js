@@ -7,7 +7,7 @@ import notify from "../../utils/notificationManager";
 import { useSetAuth } from "../../context/AuthProvider/Provider";
 import withLoading from "../common/HOC/withLoading";
 
-const SignupForm = ({setLoading}) => {
+const SignupForm = ({ setLoading }) => {
   const setAuth = useSetAuth();
 
   const initialValues = {
@@ -39,20 +39,21 @@ const SignupForm = ({setLoading}) => {
       ),
   });
 
-  const onSubmit = async (values) => {
+  const onSubmit = (values) => {
     const userData = { ...values };
     delete userData.confirmPassword;
     setLoading(true);
-    try {
-      const { data } = await signUpUser(userData);
-      setAuth(data);
-      notify("success", "ثبت نام با موفقیت انجام شد !");
-    } catch (error) {
-      const { message } = error.response.data;
-      notify("error", message);
-    } finally {
-      setLoading(false);
-    }
+    signUpUser(userData)
+      .then((res) => {
+        setAuth(res.user);
+        notify("success", "ثبت نام با موفقیت انجام شد !");
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const formik = useFormik({

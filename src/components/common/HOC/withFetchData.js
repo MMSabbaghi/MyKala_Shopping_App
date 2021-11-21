@@ -15,7 +15,8 @@ const withFetchData = (Component, fetchMethod) => {
     useEffect(() => {
       fetchMethod()
         .then((res) => {
-          setRequest({ ...request, data: res.data, loading: false });
+          const data = res.docs.map((doc) => ({ ...doc.data(), _id: doc.id }));
+          setRequest({ ...request, data, loading: false });
         })
         .catch((err) => {
           console.log(err);

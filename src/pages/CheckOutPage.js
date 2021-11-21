@@ -1,9 +1,7 @@
 const CheckOutPage = () => {
-  return (
-    <>
-      <h1>صفحه ثبت سفارش</h1>
-    </>
-  );
+  return <div className="checkout_page">
+    .
+  </div>;
 };
 
 export default CheckOutPage;
