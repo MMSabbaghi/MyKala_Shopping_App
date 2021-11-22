@@ -50,25 +50,7 @@
 
 .home_products {
   padding: 1rem 0;
-}
-
-.home_products h3 {
-  width: fit-content;
-  margin: 0.5rem auto;
-  text-align: center;
-  font-size: 2.5rem;
-  color: var(--primary-color);
-  position: relative;
-}
-
-.home_products h3::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  bottom: 0;
-  width: 100%;
-  height: 1.5rem;
-  background-color: var(--secondary-color);
+  min-height: 5rem;
 }
 
 @media screen and (max-width: 768px) {

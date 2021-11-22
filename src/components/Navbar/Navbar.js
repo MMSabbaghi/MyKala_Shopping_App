@@ -45,7 +45,6 @@ const Navbar = () => {
 
   const navItems = [
     { target: "/", label: "خانه" },
-    { target: "/products", label: "محصولات" },
     { target: "/about", label: "درباره ما" },
   ];
 
