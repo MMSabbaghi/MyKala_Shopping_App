@@ -20,8 +20,8 @@ const UserMenu = () => {
   const logOut = () => setAuth(false);
 
   return (
-    <div className="row profile_icon">
-      <button className="row" onClick={toggleMenu}>
+    <div className="row profile_icon" onClick={toggleMenu}>
+      <button className="row">
         <BiUserCircle style={{ fontSize: "2.8rem" }} />
         <span> </span>
         <BiDownArrow style={{ fontSize: "1rem" }} />
@@ -58,8 +58,8 @@ const Navbar = () => {
   return (
     <header className="row main_header">
       <nav className="row container">
-        <div className="row navbar_links">
-          <div className="menu_icon" onClick={toggleMobileMenu}>
+        <div className="row navbar_links" onClick={toggleMobileMenu}>
+          <div className="menu_icon">
             {showNav ? <BiXCircle /> : <BiMenu />}
           </div>
           <div className="logo">

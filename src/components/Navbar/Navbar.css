@@ -104,6 +104,16 @@
   opacity: 1;
 }
 
+.profile_icon ul.active::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
 .menu_icon {
   display: none;
 }
@@ -132,6 +142,16 @@
     max-height: fit-content;
     opacity: 1;
     top: 6rem;
+  }
+
+  .navbar_links ul.active_items::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
   }
 
   .profile_icon ul {
