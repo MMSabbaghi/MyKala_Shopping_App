@@ -10,13 +10,12 @@ import {
 } from "react-icons/bi";
 import { useCart } from "../../context/CartProvider/Provider";
 import toPersianNumber from "../../utils/toPersianNumber";
-import { useState } from "react";
+import useToggle from "../../hooks/useToggle";
 import { useAuth, useSetAuth } from "../../context/AuthProvider/Provider";
 
 const UserMenu = () => {
-  const [show, setShow] = useState(false);
+  const [showMenu, toggleMenu] = useToggle();
   const setAuth = useSetAuth();
-  const toggleMenu = () => setShow((prevState) => !prevState);
   const logOut = () => setAuth(false);
 
   return (
@@ -26,7 +25,7 @@ const UserMenu = () => {
         <span> </span>
         <BiDownArrow style={{ fontSize: "1rem" }} />
       </button>
-      <ul className={show ? "active" : ""}>
+      <ul className={showMenu ? "active" : ""}>
         <li>
           <Link to="/profile">پروفایل</Link>
         </li>
@@ -41,7 +40,7 @@ const UserMenu = () => {
 const Navbar = () => {
   const cart = useCart();
   const userData = useAuth();
-  const [showNav, setShowNav] = useState(false);
+  const [showNav, toggleNav] = useToggle();
 
   const navItems = [
     { target: "/", label: "خانه" },
@@ -53,12 +52,10 @@ const Navbar = () => {
       ? cart.map((p) => p.quantity).reduce((q, total) => total + q)
       : 0;
 
-  const toggleMobileMenu = () => setShowNav((prevSate) => !prevSate);
-
   return (
     <header className="row main_header">
       <nav className="row container">
-        <div className="row navbar_links" onClick={toggleMobileMenu}>
+        <div className="row navbar_links" onClick={toggleNav}>
           <div className="menu_icon">
             {showNav ? <BiXCircle /> : <BiMenu />}
           </div>
