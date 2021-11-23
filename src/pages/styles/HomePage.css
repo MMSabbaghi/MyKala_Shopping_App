@@ -41,11 +41,12 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  font-size: 1.5rem;
 }
 
 .feature img {
   filter: invert(1);
-  width: 6rem;
+  width: 4.5rem;
 }
 
 .home_products {
