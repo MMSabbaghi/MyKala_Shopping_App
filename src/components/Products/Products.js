@@ -4,8 +4,10 @@ import notify from "../../utils/notificationManager";
 import { useCart, useCartDispatch } from "../../context/CartProvider/Provider";
 import { ADD_TO_CART } from "../../context/CartProvider/Types";
 import checkInCart from "../../utils/checkInCart";
-import { getProducts } from "../../services/productsService";
-import withFetchData from "../common/HOC/withFetchData";
+// import { getProducts } from "../../services/productsService";
+// import withFetchData from "../common/HOC/withFetchData";
+
+import products from "./productsData";
 
 const ProductItem = (props) => {
   const { image, name, price, _id, offPrice, discount } = props.product;
@@ -49,7 +51,8 @@ const ProductItem = (props) => {
 };
 
 const Products = (props) => {
-  const { data: products, filter } = props;
+  // const { data: products, filter } = props;
+  const { filter } = props;
 
   const getFilteredProducts = () => (filter ? filter([...products]) : products);
 
@@ -62,4 +65,5 @@ const Products = (props) => {
   );
 };
 
-export default withFetchData(Products, getProducts);
+// export default withFetchData(Products, getProducts);
+export default Products;
