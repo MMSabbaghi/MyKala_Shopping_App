@@ -1,12 +1,11 @@
-import { db } from "./firebase";
-import { collection, getDocs } from "firebase/firestore";
+import supabase from "./supabaseClient";
 
-const productsRef = collection(db, "products");
+const productsTable = supabase.from("Products");
 
 export function getProducts() {
-  return getDocs(productsRef);
+  return productsTable.select();
 }
 
 export function getProductById(id) {
-  // return getDoc(productsRef);
+  // someThings
 }

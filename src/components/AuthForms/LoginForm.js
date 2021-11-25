@@ -28,7 +28,7 @@ const LoginForm = ({ setLoading }) => {
     setLoading(true);
     loginUser(values)
       .then((res) => {
-        setAuth(res.user);
+        setAuth({ ...res.user, token: res.session.access_token });
         notify("success", "با موفقیت وارد شدید !");
       })
       .catch((error) => {

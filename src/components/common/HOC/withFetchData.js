@@ -12,15 +12,17 @@ const withFetchData = (Component, fetchMethod) => {
       error: false,
     });
 
+    const fetchData = async () => {
+      try {
+        const { data } = await fetchMethod();
+        setRequest((req) => ({ ...req, data, loading: false }));
+      } catch (error) {
+        setRequest((req) => ({ ...req, loading: false, error: true }));
+      }
+    };
+
     useEffect(() => {
-      fetchMethod()
-        .then((res) => {
-          const data = res.docs.map((doc) => ({ ...doc.data(), _id: doc.id }));
-          setRequest((req) => ({ ...req, data, loading: false }));
-        })
-        .catch((err) => {
-          setRequest((req) => ({ ...req, loading: false, error: true }));
-        });
+      fetchData();
     }, []);
 
     if (request.error) {

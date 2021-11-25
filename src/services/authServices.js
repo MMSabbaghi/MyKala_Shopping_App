@@ -1,17 +1,13 @@
-import { auth } from "./firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import supabase from "./supabaseClient";
+
+const auth = supabase.auth;
 
 export function signUpUser(userData) {
-  return createUserWithEmailAndPassword(
-    auth,
-    userData.email,
-    userData.password
-  );
+  const { email, password } = userData;
+  return auth.signUp({ email, password });
 }
 
 export function loginUser(loginData) {
-  return signInWithEmailAndPassword(auth, loginData.email, loginData.password);
+  const { email, password } = loginData;
+  return auth.signIn({ email, password });
 }

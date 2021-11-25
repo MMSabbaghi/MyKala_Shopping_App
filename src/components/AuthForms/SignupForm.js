@@ -45,7 +45,7 @@ const SignupForm = ({ setLoading }) => {
     setLoading(true);
     signUpUser(userData)
       .then((res) => {
-        setAuth(res.user);
+        setAuth({ ...res.user, token: res.session.access_token });
         notify("success", "ثبت نام با موفقیت انجام شد !");
       })
       .catch((err) => {
