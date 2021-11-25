@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Loader from "../Loader/Loader";
 import ErrorContent from "../ErrorContent/ErrorContent";
 import dataErrorImg from "../../../assets/images/Questions-bro.svg";
@@ -11,19 +11,23 @@ const withFetchData = (Component, fetchMethod) => {
       loading: true,
       error: false,
     });
+    const setError = () =>
+      setRequest((req) => ({ ...req, loading: false, error: true }));
 
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
       try {
-        const { data } = await fetchMethod();
-        setRequest((req) => ({ ...req, data, loading: false }));
+        const { data, error } = await fetchMethod();
+        error
+          ? setError()
+          : setRequest((req) => ({ ...req, data, loading: false }));
       } catch (error) {
-        setRequest((req) => ({ ...req, loading: false, error: true }));
+        setError();
       }
-    };
+    }, []);
 
     useEffect(() => {
       fetchData();
-    }, []);
+    }, [fetchData]);
 
     if (request.error) {
       return (

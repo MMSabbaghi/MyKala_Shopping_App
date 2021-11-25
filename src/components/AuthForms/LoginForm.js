@@ -28,11 +28,13 @@ const LoginForm = ({ setLoading }) => {
     setLoading(true);
     loginUser(values)
       .then((res) => {
-        setAuth({ ...res.user, token: res.session.access_token });
-        notify("success", "با موفقیت وارد شدید !");
-      })
-      .catch((error) => {
-        notify("error", error.code);
+        const { user, session, error } = res;
+        if (error) {
+          notify("error", error.message);
+        } else {
+          setAuth({ ...user, token: session.access_token });
+          notify("success", "با موفقیت وارد شدید !");
+        }
       })
       .finally(() => {
         setLoading(false);
