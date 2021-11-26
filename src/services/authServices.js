@@ -1,13 +1,18 @@
 import supabase from "./supabaseClient";
 
 const auth = supabase.auth;
+const authResult = { user: null, error: null };
 
-export function signUpUser(userData) {
+export async function signUpUser(userData) {
   const { email, password } = userData;
-  return auth.signUp({ email, password });
+  const { user, session, error } = await auth.signUp({ email, password });
+  if (error) return { ...authResult, error: error.message };
+  return { ...authResult, user: { ...user, token: session.access_token } };
 }
 
-export function loginUser(loginData) {
+export async function loginUser(loginData) {
   const { email, password } = loginData;
-  return auth.signIn({ email, password });
+  const { user, session, error } = await auth.signIn({ email, password });
+  if (error) return { ...authResult, error: error.message };
+  return { ...authResult, user: { ...user, token: session.access_token } };
 }

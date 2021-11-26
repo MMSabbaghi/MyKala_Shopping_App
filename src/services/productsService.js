@@ -1,9 +1,12 @@
 import supabase from "./supabaseClient";
 
 const productsTable = supabase.from("Products");
+const fetchResult = { data: null, error: null };
 
-export function getProducts() {
-  return productsTable.select();
+export async function getProducts() {
+  const { data, error } = await productsTable.select();
+  if (error) return { ...fetchResult, error: error.message };
+  return { ...fetchResult, data: data };
 }
 
 export function getProductById(id) {

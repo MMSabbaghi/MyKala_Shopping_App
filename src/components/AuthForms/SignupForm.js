@@ -39,23 +39,18 @@ const SignupForm = ({ setLoading }) => {
       ),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     const userData = { ...values };
     delete userData.confirmPassword;
     setLoading(true);
-    signUpUser(userData)
-      .then((res) => {
-        const { user, session, error } = res;
-        if (error) {
-          notify("error", error.message);
-        } else {
-          setAuth({ ...user, token: session.access_token });
-          notify("success", "ثبت نام با موفقیت انجام شد !");
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    const { user, error } = await signUpUser(userData);
+    if (error) {
+      notify("error", error);
+    } else {
+      setAuth(user);
+      notify("success", "ثبت نام با موفقیت انجام شد !");
+    }
+    setLoading(false);
   };
 
   const formik = useFormik({

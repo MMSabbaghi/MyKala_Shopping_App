@@ -7,22 +7,15 @@ import { Link } from "react-router-dom";
 const withFetchData = (Component, fetchMethod) => {
   return function ResultComponent(props) {
     const [request, setRequest] = useState({
-      data: [],
+      data: null,
       loading: true,
       error: false,
     });
-    const setError = () =>
-      setRequest((req) => ({ ...req, loading: false, error: true }));
 
     const fetchData = useCallback(async () => {
-      try {
-        const { data, error } = await fetchMethod();
-        error
-          ? setError()
-          : setRequest((req) => ({ ...req, data, loading: false }));
-      } catch (error) {
-        setError();
-      }
+      const { data, error } = await fetchMethod();
+      if (error) setRequest((req) => ({ ...req, loading: false, error: true }));
+      else setRequest((req) => ({ ...req, data, loading: false }));
     }, []);
 
     useEffect(() => {

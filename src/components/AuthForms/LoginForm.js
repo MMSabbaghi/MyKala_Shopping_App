@@ -24,21 +24,16 @@ const LoginForm = ({ setLoading }) => {
       .min(8, "رمز عبور حداقل باید شامل ۸ کاراکتر باشد !"),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     setLoading(true);
-    loginUser(values)
-      .then((res) => {
-        const { user, session, error } = res;
-        if (error) {
-          notify("error", error.message);
-        } else {
-          setAuth({ ...user, token: session.access_token });
-          notify("success", "با موفقیت وارد شدید !");
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    const { user, error } = await loginUser(values);
+    if (error) {
+      notify("error", error);
+    } else {
+      setAuth(user);
+      notify("success", "با موفقیت وارد شدید !");
+    }
+    setLoading(false);
   };
 
   const formik = useFormik({
