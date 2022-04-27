@@ -6,7 +6,6 @@ import {
   BiMenu,
   BiXCircle,
   BiUserCircle,
-  BiDownArrow,
 } from "react-icons/bi";
 import { useCart } from "../../context/CartProvider/Provider";
 import toPersianNumber from "../../utils/toPersianNumber";
@@ -19,17 +18,22 @@ const UserMenu = () => {
   const logOut = () => setAuth(false);
 
   return (
-    <div className="row profile_icon" onClick={toggleMenu}>
-      <button className="row">
-        <BiUserCircle style={{ fontSize: "2.8rem" }} />
-        <span> </span>
-        <BiDownArrow style={{ fontSize: "1rem" }} />
+    <div
+      className="flex items-center relative text-2xl profile_icon"
+      onClick={toggleMenu}
+    >
+      <button className="flex items-center text-primary cursor-pointer">
+        <BiUserCircle className="text-[2.6rem]" />
       </button>
-      <ul className={showMenu ? "active" : ""}>
-        <li>
+      <ul
+        className={`absolute top-full -right-1/2 bg-secondary rounded-lg shadow-xl opacity-0 scale-0 duration-200 ${
+          showMenu ? "active scale-100 opacity-100" : ""
+        }`}
+      >
+        <li className="text-center py-2 px-8">
           <Link to="/profile">پروفایل</Link>
         </li>
-        <li>
+        <li className="text-center py-2 px-8">
           <button onClick={logOut}>خروج</button>
         </li>
       </ul>
@@ -53,21 +57,27 @@ const Navbar = () => {
       : 0;
 
   return (
-    <header className="row main_header">
-      <nav className="row container">
-        <div className="row navbar_links" onClick={toggleNav}>
-          <div className="menu_icon">
-            {showNav ? <BiXCircle /> : <BiMenu />}
+    <header className="sticky top-0 flex items-center h-24 bg-secondary shadow-xl">
+      <nav className="container flex items-center justify-between">
+        <div className="flex items-center navbar_links" onClick={toggleNav}>
+          <div className="md:hidden">
+            {showNav ? (
+              <BiXCircle className="text-primary text-[2.5rem]" />
+            ) : (
+              <BiMenu className="text-primary text-[2.5rem]" />
+            )}
           </div>
-          <div className="logo">
-            <h1>مای کالا</h1>
+          <div className="mr-4 ml-12">
+            <h1 className="font-bold text-4xl">مای کالا</h1>
           </div>
-          <ul className={`row ${showNav ? "active_items" : ""}`}>
+          <ul className={`flex items-center ${showNav ? "active_items" : ""}`}>
             {navItems.map(({ target, label }, index) => (
-              <li key={index}>
+              <li className="mx-4" key={index}>
                 <NavLink
                   className={({ isActive }) =>
-                    `navlink${isActive ? " active" : ""}`
+                    `inline-block p-2 rounded-lg hover:bg-primary hover:text-secondary ${
+                      isActive ? "text-primary hover:text-secondary" : ""
+                    }`
                   }
                   to={target}
                 >
@@ -77,14 +87,22 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <div className="row left_icons">
-          <Link to="/cart" className="cart_icon">
-            <span> {toPersianNumber(getCartQuantity())} </span>
-            <BiCartAlt />
+        <div className="flex items-center gap-6">
+          <Link
+            to="/cart"
+            className="flex relative cursor-pointer text-primary"
+          >
+            <span className="absolute h-7 w-7 -top-3 -right-3 bg-red rounded-full grid place-content-center text-[#fff] text-[1.3rem] ">
+              {toPersianNumber(getCartQuantity())}
+            </span>
+            <BiCartAlt className="text-[2.5rem]" />
           </Link>
           {!userData ? (
-            <Link to="/login" className="row enter_icon">
-              <BiLogOut /> <span> ورود</span>
+            <Link
+              to="/login"
+              className="flex items-center gap-2 relative cursor-pointer text-primary"
+            >
+              <BiLogOut className="text-[2.5rem]" /> <span> ورود</span>
             </Link>
           ) : (
             <UserMenu />

@@ -1,5 +1,4 @@
 import toPersianNumber from "../../utils/toPersianNumber";
-import "./Products.css";
 import notify from "../../utils/notificationManager";
 import { useCart, useCartDispatch } from "../../context/CartProvider/Provider";
 import { ADD_TO_CART } from "../../context/CartProvider/Types";
@@ -24,20 +23,29 @@ const ProductItem = (props) => {
     if (!discount) return <p> {toPersianNumber(price)}دلار</p>;
 
     return (
-      <div className="price_discount row">
-        <p> {toPersianNumber(price)}</p>
-        <span> {toPersianNumber(discount)}% </span>
+      <div className="row gap-[0.7rem]">
+        <p className="text-gray line-through"> {toPersianNumber(price)}</p>
+        <span className="grid place-content-center bg-red text-[#fff] w-12 h-8 rounded-full text-[1.4rem]">
+          {" "}
+          {toPersianNumber(discount)}%{" "}
+        </span>
         <p> {toPersianNumber(offPrice)}دلار </p>
       </div>
     );
   };
 
   return (
-    <div className="product_item">
-      <img src={image} alt={name} />
-      <section>
-        <p className="product_name">{name}</p>
-        <div>
+    <div className="card overflow-hidden">
+      <img
+        className="w-full h-[25rem] object-contain object-center"
+        src={image}
+        alt={name}
+      />
+      <section className="flex flex-col p-4">
+        <p className="text-ellipsis text-center font-bold text-[2rem]">
+          {name}
+        </p>
+        <div className="flex items-center justify-between p-4">
           <button className="btn btn_primary" onClick={addProductHandler}>
             {inCart ? "اضافه شد !" : "افزودن به سبد خرید"}
           </button>
@@ -48,13 +56,11 @@ const ProductItem = (props) => {
   );
 };
 
-const Products = (props) => {
-  const { data: products, filter } = props;
-  
+const Products = ({ data: products, filter }) => {
   const getFilteredProducts = () => (filter ? filter([...products]) : products);
 
   return (
-    <section className="products">
+    <section className="grid gap-10 mt-8 mb-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {getFilteredProducts().map((product) => (
         <ProductItem key={product._id} product={product} />
       ))}

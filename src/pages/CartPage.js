@@ -1,4 +1,3 @@
-import "./styles/CartPage.css";
 import emptyCartImg from "../assets/images/cart-empty.svg";
 import { useCart } from "../context/CartProvider/Provider";
 import { Link } from "react-router-dom";
@@ -19,13 +18,13 @@ const CartPage = () => {
     );
   }
   return (
-    <section className="container cart">
-      <div className="cart_items">
+    <section className="container my-4 gap-8 lg:grid lg:grid-cols-11 flex flex-col">
+      <CartPrice className="lg:order-2 card cart-page-card lg:col-span-3" />
+      <div className="lg:order-1 card cart-page-card lg:col-span-8">
         {cart.map((product) => (
           <CartItem key={product._id} product={product} />
         ))}
       </div>
-      <CartPrice />
     </section>
   );
 };

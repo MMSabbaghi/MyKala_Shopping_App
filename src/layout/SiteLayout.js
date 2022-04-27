@@ -6,7 +6,7 @@ const SiteLayout = ({ children }) => {
     <>
       <Navbar />
       <main>{children}</main>
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -1,9 +1,8 @@
 import { useCart } from "../../context/CartProvider/Provider";
-import "./CartPrice.css";
 import toPersianNumber from "../../utils/toPersianNumber";
 import { Link } from "react-router-dom";
 
-const CartPrice = () => {
+const CartPrice = ({className}) => {
   const cart = useCart();
 
   const getTotalPrice = () =>
@@ -15,17 +14,17 @@ const CartPrice = () => {
   const getTotalDiscount = () => getTotalPrice() - getFinalPrice();
 
   return (
-    <section className="cart_price">
-      <div className="row">
+    <section className={`${className} h-fit text-2xl`}>
+      <div className="flex items-center justify-between">
         <p>قیمت کالا ها</p>
         <p>{toPersianNumber(getTotalPrice())}$</p>
       </div>
-      <div className="row">
+      <div className="flex items-center justify-between">
         <p>تخفیف کالا ها</p>
         <p>{toPersianNumber(getTotalDiscount())}$</p>
       </div>
-      <hr />
-      <div className="row">
+      <hr className="border-gray" />
+      <div className="flex items-center justify-between">
         <p>مبلغ قابل پرداخت</p>
         <p>{toPersianNumber(getFinalPrice())}$</p>
       </div>

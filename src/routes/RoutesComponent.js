@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import routes from "./routes";
 import AppPage from "./AppPage";
 import { Route, Routes } from "react-router";
@@ -12,9 +13,11 @@ const RoutesComponent = () => {
             path={path}
             element={
               <AppPage title={title} authorize={authorize} path={path}>
-                <Layout>
-                  <Page />
-                </Layout>
+                <Suspense fallback={<div className="backdrop" />}>
+                  <Layout>
+                    <Page />
+                  </Layout>
+                </Suspense>
               </AppPage>
             }
           >

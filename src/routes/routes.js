@@ -1,13 +1,15 @@
 import { Route } from "./Classes";
-import HomePage from "../pages/HomePage";
-import NotFound404Page from "../pages/NotFound404Page";
-import CartPage from "../pages/CartPage";
-import CheckOutPage from "../pages/CheckOutPage";
-import LoginForm from "../components/AuthForms/LoginForm";
-import SignupForm from "../components/AuthForms/SignupForm";
-import AuthLayout from "../layout/AuthLayout";
-import ProfilePage from "../pages/ProfilePage";
-import ProductsPage from "../pages/ProductsPage";
+import { lazy } from "react";
+/** pages */
+const HomePage = lazy(()=> import("../pages/HomePage"))
+const NotFound404Page = lazy(()=> import("../pages/NotFound404Page"))
+const CartPage = lazy(()=> import("../pages/CartPage"))
+const CheckOutPage = lazy(()=> import("../pages/CheckOutPage"))
+const LoginForm = lazy(()=> import("../components/AuthForms/LoginForm"))
+const SignupForm = lazy(()=> import("../components/AuthForms/SignupForm"))
+const AuthLayout = lazy(()=> import("../layout/AuthLayout"))
+const ProfilePage = lazy(()=> import("../pages/ProfilePage"))
+const ProductsPage = lazy(()=> import("../pages/ProductsPage"))
 
 const routes = [
   new Route("خانه", "/", HomePage),

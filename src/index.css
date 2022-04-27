@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --bg-color: #eee;
   --primary-color: #4338ca;
@@ -18,9 +22,6 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: "Shabnam", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -29,28 +30,13 @@ html {
 }
 
 body {
-  background-color: var(--bg-color);
-  font-size: 1.6rem;
-  color: var(--text-color);
-}
-
-ul {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
+  @apply bg-body text-[1.6rem] text-[#222];
 }
 
 .container {
-  width: 90%;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 130rem;
+  @apply w-[90%] mx-auto max-w-[130rem]
 }
 
-.app > main,
 .app > main > .container {
   min-height: 90vh;
 }
@@ -61,18 +47,23 @@ a {
 }
 
 .btn {
-  cursor: pointer;
-  padding: 0.8rem;
-  outline: none;
-  border: none;
-  border-radius: 0.5rem;
-}
-
-.btn_primary {
-  background-color: var(--primary-color);
-  color: #fff;
+  @apply cursor-pointer p-[0.8rem] outline-none border-none rounded-lg text-center; 
 }
 
 .btn:disabled {
   opacity: 0.6;
+}
+
+/** BTNS */
+.btn_primary {
+  @apply text-secondary bg-primary;
+}
+
+/** CARDS */
+.card {
+  @apply bg-secondary rounded-lg shadow-xl;
+}
+
+.cart-page-card {
+  @apply h-fit flex flex-col gap-4 p-4;
 }
