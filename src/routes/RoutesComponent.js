@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import routes from "./routes";
 import AppPage from "./AppPage";
 import { Route, Routes } from "react-router";
+import PageLoader from "../components/PageLoader";
 
 const RoutesComponent = () => {
   return (
@@ -13,7 +14,7 @@ const RoutesComponent = () => {
             path={path}
             element={
               <AppPage title={title} authorize={authorize} path={path}>
-                <Suspense fallback={<div className="backdrop" />}>
+                <Suspense fallback={<PageLoader />}>
                   <Layout>
                     <Page />
                   </Layout>
