@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import TextField from "../common/TextField/TextField";
 import * as Yup from "yup";
-import "./AuthForms.css";
 import { loginUser } from "../../services/authServices";
 import notify from "../../utils/notificationManager";
 import { useSetAuth } from "../../context/AuthProvider/Provider";
@@ -44,9 +43,9 @@ const LoginForm = ({ setLoading }) => {
   });
 
   return (
-    <div className="auth_form_group">
-      <h1> فرم ورود </h1>
-      <form onSubmit={formik.handleSubmit}>
+    <>
+      <h1 className="w-fit text-[3rem] my-4 mx-auto border-b-2 border-b-primary"> فرم ورود </h1>
+      <form className="flex flex-col gap-2 mt-0 px-4 my-4" onSubmit={formik.handleSubmit}>
         <TextField
           formik={formik}
           type="email"
@@ -62,12 +61,12 @@ const LoginForm = ({ setLoading }) => {
         <button
           type="submit"
           disabled={!formik.isValid}
-          className="btn btn_primary"
+          className="btn btn_primary mt-4 text-[1.8rem]"
         >
           ورود
         </button>
       </form>
-    </div>
+    </>
   );
 };
 
