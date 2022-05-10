@@ -1,4 +1,3 @@
-import "./styles/AuthLayout.css";
 import authImg from "../assets/images/Secure login-rafiki.svg";
 import { NavLink } from "react-router-dom";
 import SiteLayout from "./SiteLayout";
@@ -19,12 +18,17 @@ const AuthLayout = ({ children }) => {
   const getRouteWithRedirect = (route) =>
     redirectUrl ? `${route}?redirect=${redirectUrl}` : route;
 
-  const getNavLinkClass = ({ isActive }) => (isActive ? "active_form" : "");
+  const getNavLinkClass = ({ isActive }) => {
+    return ` ${
+      isActive ? "bg-primary text-secondary" : ""
+    } grid place-content-center text-[2rem]`;
+  };
+
   return (
     <SiteLayout>
-      <div className="container auth_page">
-        <div className="auth_form">
-          <div className="toggle_form">
+      <div className="container -mt-20 flex flex-col lg:grid lg:grid-cols-2">
+        <div className="auth_form mt-40 p-4 h-fit bg-secondary shadow-lg rounded-lg">
+          <div className="toggle_form w-[90%] h-16 m-auto border border-primary rounded-lg grid grid-cols-2">
             <NavLink
               to={getRouteWithRedirect("/login")}
               className={getNavLinkClass}
