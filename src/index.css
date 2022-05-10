@@ -2,17 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bg-color: #eee;
-  --primary-color: #4338ca;
-  --secondary-color: #fff;
-  --text-color: #222;
-  --shadow-color: rgba(0, 0, 0, 0.2);
-  --red-color: #f44336;
-  --gray-color: #ccc;
-  --gray2-color: #888;
-}
-
 @font-face {
   font-family: "Shabnam";
   src: url("./assets/fonts/Shabnam.woff2") format("woff2"),
@@ -34,7 +23,7 @@ body {
 }
 
 .container {
-  @apply w-[90%] mx-auto max-w-[130rem]
+  @apply w-[90%] mx-auto max-w-[130rem];
 }
 
 .app > main > .container {
@@ -47,11 +36,11 @@ body {
 }
 
 .btn {
-  @apply cursor-pointer p-[0.8rem] outline-none border-none rounded-lg text-center; 
+  @apply cursor-pointer p-[0.8rem] outline-none border-none rounded-lg text-center;
 }
 
 .btn:disabled {
-  opacity: 0.6;
+  @apply bg-opacity-60;
 }
 
 /** BTNS */

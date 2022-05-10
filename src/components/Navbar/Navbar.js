@@ -1,4 +1,3 @@
-import "./Navbar.css";
 import { Link, NavLink } from "react-router-dom";
 import {
   BiCartAlt,
@@ -11,6 +10,8 @@ import { useCart } from "../../context/CartProvider/Provider";
 import toPersianNumber from "../../utils/toPersianNumber";
 import useToggle from "../../hooks/useToggle";
 import { useAuth, useSetAuth } from "../../context/AuthProvider/Provider";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
 
 const UserMenu = () => {
   const [showMenu, toggleMenu] = useToggle();
@@ -18,15 +19,12 @@ const UserMenu = () => {
   const logOut = () => setAuth(false);
 
   return (
-    <div
-      className="flex items-center relative text-2xl profile_icon"
-      onClick={toggleMenu}
-    >
+    <div className="flex items-center relative text-2xl" onClick={toggleMenu}>
       <button className="flex items-center text-primary cursor-pointer">
         <BiUserCircle className="text-[2.6rem]" />
       </button>
       <ul
-        className={`absolute top-full -right-1/2 bg-secondary rounded-lg shadow-xl opacity-0 scale-0 duration-200 ${
+        className={`absolute top-full md:-right-1/2 -right-full bg-secondary rounded-lg shadow-xl opacity-0 scale-0 duration-200 ${
           showMenu ? "active scale-100 opacity-100" : ""
         }`}
       >
@@ -38,6 +36,27 @@ const UserMenu = () => {
         </li>
       </ul>
     </div>
+  );
+};
+
+const NavbarLinks = ({ links }) => {
+  return (
+    <ul className="flex items-center flex-col md:flex-row">
+      {links.map(({ target, label }, index) => (
+        <li className="mx-4" key={index}>
+          <NavLink
+            className={({ isActive }) =>
+              `inline-block p-2 rounded-lg hover:bg-primary hover:text-secondary ${
+                isActive ? "text-primary hover:text-secondary" : ""
+              }`
+            }
+            to={target}
+          >
+            {label}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
   );
 };
 
@@ -59,8 +78,8 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 flex items-center h-24 bg-secondary shadow-xl">
       <nav className="container flex items-center justify-between">
-        <div className="flex items-center navbar_links" onClick={toggleNav}>
-          <div className="md:hidden">
+        <div className="flex items-center" onClick={toggleNav}>
+          <div className="md:hidden z-[200]">
             {showNav ? (
               <BiXCircle className="text-primary text-[2.5rem]" />
             ) : (
@@ -70,22 +89,20 @@ const Navbar = () => {
           <div className="mr-4 ml-12">
             <h1 className="font-bold text-4xl">مای کالا</h1>
           </div>
-          <ul className={`flex items-center ${showNav ? "active_items" : ""}`}>
-            {navItems.map(({ target, label }, index) => (
-              <li className="mx-4" key={index}>
-                <NavLink
-                  className={({ isActive }) =>
-                    `inline-block p-2 rounded-lg hover:bg-primary hover:text-secondary ${
-                      isActive ? "text-primary hover:text-secondary" : ""
-                    }`
-                  }
-                  to={target}
-                >
-                  {label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+          <div className="hidden md:flex">
+            <NavbarLinks links={navItems} />
+          </div>
+          <div className="md:hidden">
+            <Drawer
+              open={showNav}
+              onClose={toggleNav}
+              direction="right"
+              className="pt-24"
+              duration={300}
+            >
+              <NavbarLinks links={navItems} />
+            </Drawer>
+          </div>
         </div>
         <div className="flex items-center gap-6">
           <Link

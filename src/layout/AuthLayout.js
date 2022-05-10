@@ -27,8 +27,8 @@ const AuthLayout = ({ children }) => {
   return (
     <SiteLayout>
       <div className="container -mt-20 flex flex-col lg:grid lg:grid-cols-2">
-        <div className="auth_form mt-40 p-4 h-fit bg-secondary shadow-lg rounded-lg">
-          <div className="toggle_form w-[90%] h-16 m-auto border border-primary rounded-lg grid grid-cols-2">
+        <div className="mt-40 p-4 h-fit bg-secondary shadow-lg rounded-lg">
+          <div className="w-[90%] h-16 m-auto border border-primary rounded-lg grid grid-cols-2">
             <NavLink
               to={getRouteWithRedirect("/login")}
               className={getNavLinkClass}
