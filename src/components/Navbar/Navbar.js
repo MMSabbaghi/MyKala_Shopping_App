@@ -12,6 +12,7 @@ import useToggle from "../../hooks/useToggle";
 import { useAuth, useSetAuth } from "../../context/AuthProvider/Provider";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
+import ThemeSwitch from "./ThemeSwitch";
 
 const UserMenu = () => {
   const [showMenu, toggleMenu] = useToggle();
@@ -24,7 +25,7 @@ const UserMenu = () => {
         <BiUserCircle className="text-[2.6rem]" />
       </button>
       <ul
-        className={`absolute top-full md:-right-1/2 -right-full bg-secondary rounded-lg shadow-xl opacity-0 scale-0 duration-200 ${
+        className={`absolute top-full md:-right-1/2 -right-full bg-secondary dark:bg-slate-600 rounded-lg shadow-xl opacity-0 scale-0 duration-200 ${
           showMenu ? "active scale-100 opacity-100" : ""
         }`}
       >
@@ -76,7 +77,7 @@ const Navbar = () => {
       : 0;
 
   return (
-    <header className="sticky top-0 flex items-center h-24 bg-secondary shadow-xl">
+    <header className="sticky top-0 flex items-center h-24 bg-secondary dark:bg-slate-600 shadow-xl">
       <nav className="container flex items-center justify-between">
         <div className="flex items-center" onClick={toggleNav}>
           <div className="md:hidden z-[200]">
@@ -105,6 +106,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex items-center gap-6">
+          <ThemeSwitch />
           <Link
             to="/cart"
             className="flex relative cursor-pointer text-primary"
