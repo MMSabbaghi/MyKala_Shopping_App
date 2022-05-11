@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  @apply bg-body text-[1.6rem] text-[#222];
+  @apply bg-body text-[1.6rem] text-[#222] dark:text-white dark:bg-slate-900;
 }
 
 .container {
@@ -50,9 +50,29 @@ body {
 
 /** CARDS */
 .card {
-  @apply bg-secondary rounded-lg shadow-xl;
+  @apply bg-secondary  rounded-lg shadow-xl;
 }
 
 .cart-page-card {
   @apply h-fit flex flex-col gap-4 p-4;
+}
+
+.dark .bg-secondary {
+  @apply bg-slate-700;
+}
+
+.dark .bg-primary {
+  @apply bg-[#6419E6];
+}
+
+.dark .text-primary{
+  @apply text-indigo-400;
+}
+
+.dark .border-primary{
+  @apply border-[#6419E6];
+}
+
+.dark .text-gray-2{
+  @apply text-slate-400;
 }

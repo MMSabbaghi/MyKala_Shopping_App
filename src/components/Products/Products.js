@@ -36,11 +36,13 @@ const ProductItem = (props) => {
 
   return (
     <div className="card overflow-hidden">
-      <img
-        className="w-full h-[25rem] object-contain object-center"
-        src={image}
-        alt={name}
-      />
+      <div className="bg-white">
+        <img
+          className="w-full h-[25rem] object-contain object-center"
+          src={image}
+          alt={name}
+        />
+      </div>
       <section className="flex flex-col p-4">
         <p className="text-ellipsis text-center font-bold text-[2rem]">
           {name}

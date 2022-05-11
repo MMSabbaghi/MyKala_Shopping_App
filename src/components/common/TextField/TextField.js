@@ -12,7 +12,7 @@ const TextField = ({ fieldName, label, formik, type = "text" }) => {
         {renderError()}
       </div>
       <input
-      className="outline-none p-3 border-gray-2 border-[1px] mt-2 rounded-lg focus:border-primary"
+      className="outline-none p-3 border-gray-2 border-[1px] mt-2 rounded-lg focus:border-primary bg-secondary"
         type={type}
         name={fieldName}
         id={fieldName}

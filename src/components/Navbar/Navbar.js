@@ -77,7 +77,7 @@ const Navbar = () => {
       : 0;
 
   return (
-    <header className="sticky top-0 flex items-center h-24 bg-secondary dark:bg-slate-600 shadow-xl">
+    <header className="sticky top-0 flex items-center h-24 bg-secondary  shadow-xl">
       <nav className="container flex items-center justify-between">
         <div className="flex items-center" onClick={toggleNav}>
           <div className="md:hidden z-[200]">
@@ -98,7 +98,7 @@ const Navbar = () => {
               open={showNav}
               onClose={toggleNav}
               direction="right"
-              className="pt-24"
+              className="pt-24 bg-secondary"
               duration={300}
             >
               <NavbarLinks links={navItems} />
